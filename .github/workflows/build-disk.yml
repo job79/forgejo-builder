@@ -2,7 +2,6 @@
 name: Build disk images
 on:
   workflow_dispatch:
-
 jobs:
   build:
     name: Build disk images
@@ -21,8 +20,6 @@ jobs:
           USER_UID=$(id -u)
           USER_GID=$(id -g)
           DISK_TYPE=$(echo "${{ matrix.disk-type }}" | tr ' ' '-')
-          echo "IMAGE_REGISTRY=ghcr.io" >> ${GITHUB_ENV}
-          echo "IMAGE_NAME=job79/forgejo-builder:20260214" >> ${GITHUB_ENV}
           echo "DISK_TYPE=${DISK_TYPE}" >> ${GITHUB_ENV}
           echo "USER_UID=${USER_UID}" >> ${GITHUB_ENV}
           echo "USER_GID=${USER_GID}" >> ${GITHUB_ENV}
@@ -32,12 +29,12 @@ jobs:
         id: build
         uses: osbuild/bootc-image-builder-action@main
         with:
-          builder-image: "quay.io/centos-bootc/bootc-image-builder:latest"
-          config-file: ${{ matrix.disk-type == 'anaconda-iso' && './disk_config/iso.toml' || './disk_config/disk.toml' }}
-          image: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}
+          builder-image: quay.io/centos-bootc/bootc-image-builder:latest
+          config-file: "./disk_config/disk.toml"
+          image: ghcr.io/job79/forgejo-builder:latest
           chown: ${{ env.USER_UID }}:${{ env.USER_GID }}
           types: ${{ matrix.disk-type }}
-          additional-args: --use-librepo=True
+          additional-args: --use-librepo=True --rootfs btrfs
       - name: Upload disk images and Checksum to Job Artifacts
         uses: actions/upload-artifact@v6
         with:
