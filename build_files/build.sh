@@ -1,7 +1,6 @@
 #!/bin/bash
 set -ouex pipefail
 
-dnf -y install sudo shadow-utils
-mkdir -p /home/
+dnf -y install sudo shadow-utils iptables-nft NetworkManager iproute hostname
 sudo useradd -g wheel -m -p '$6$t8FzFHM1/JNawaqT$mUBJK8O/qIenmS4XaPrnSHjfEYchFj99jGRG5ectEe/2eYu9LLrWKLHZuAEfnWEE4JFIzUYX94.RTOgklPypS.' admin
 systemctl enable podman.socket

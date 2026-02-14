@@ -34,7 +34,7 @@ jobs:
           image: ghcr.io/job79/forgejo-builder:latest
           chown: ${{ env.USER_UID }}:${{ env.USER_GID }}
           types: ${{ matrix.disk-type }}
-          additional-args: --use-librepo=True --rootfs btrfs
+          additional-args: --use-librepo=True --rootfs xfs
       - name: Upload disk images and Checksum to Job Artifacts
         uses: actions/upload-artifact@v6
         with:
