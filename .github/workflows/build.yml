@@ -27,6 +27,8 @@ jobs:
           containerfiles: |
             ./Containerfile
           image: job79/forgejo-builder
+          labels: |
+            containers.bootc=1
           tags: latest
           oci: false
       - name: Push
