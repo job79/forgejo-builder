@@ -1,7 +1,7 @@
 FROM scratch AS ctx
 COPY build_files /
 
-FROM quay.io/bootc-devel/fedora-bootc-43-minimal:latest
+FROM quay.io/bootc-devel/fedora-bootc-44-minimal:latest
 
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
