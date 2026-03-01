@@ -1,0 +1,11 @@
+[Unit]
+Description=Mount /dev/cdrom to /var/mnt/config
+
+[Mount]
+What=/dev/cdrom
+Where=/var/mnt/config
+Type=auto
+Options=defaults
+
+[Install]
+WantedBy=multi-user.target

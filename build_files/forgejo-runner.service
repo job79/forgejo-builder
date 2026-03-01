@@ -8,8 +8,8 @@ ExecStart=/usr/local/bin/forgejo-runner daemon
 ExecReload=/bin/kill -s HUP $MAINPID
 
 # This user and working directory must already exist
-User=runner 
-WorkingDirectory=/home/runner
+User=runner
+WorkingDirectory=/var/home/runner
 Restart=on-failure
 TimeoutSec=0
 RestartSec=10

@@ -16,6 +16,7 @@ wget -O forgejo-runner ${FORGEJO_URL}
 chmod +x forgejo-runner
 mv forgejo-runner /usr/local/bin/forgejo-runner
 cp /ctx/forgejo-runner.service /etc/systemd/user/forgejo-runner.service
+cp /ctx/var-mnt-config.mount /etc/systemd/system/var-mnt-config.mount
 
 # Enable forgejo-runner for the runner user
 su runner -c "systemctl --user enable podman.socket"
